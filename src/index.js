@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import  ReactDOM from 'react-dom'
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import {Provider} from 'react-redux'
+// import {Button} from 'antd-mobile'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import store from './redux/store'
+import Main from './containers/main/main'
+import Register from './containers/register/register'
+import Login from './containers/login/login'
+import './assets/css/index.less'
+// import './test/socketio_test'
+ReactDOM.render((
+    <Provider store={store}>
+        <HashRouter>
+            <Switch>
+                <Route path="/register" component={Register}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route component={Main}></Route> 
+            </Switch>
+        </HashRouter>
+    </Provider>
+),document.getElementById('root'))
